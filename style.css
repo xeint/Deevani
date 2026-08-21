@@ -13,15 +13,36 @@
     overflow-x: hidden;
   }
   
-  /* --- CONTAINER EMOJI MELAYANG (DI BELAKANG TEXT) --- */
-#floating-elements-container {
-    position: fixed;
+  /* --- HERO SECTION (LAYAR PEMBUKA) --- */
+  .hero-section {
+    position: relative; /* Wajib agar container emoji terkunci di section ini saja */
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Memotong emoji yang jatuh melampaui batas hero section */
+  }
+  
+  /* Memastikan teks Hero selalu di atas emoji */
+  .hero-section .content-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* --- CONTAINER EMOJI HANYA UNTUK HALAMAN ATAS --- */
+  #floating-elements-container {
+    position: absolute; /* Mengunci container di dalam hero-section */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 0; /* Diubah ke 0 agar berada di paling belakang */
+    z-index: 0; /* Berada di belakang teks */
     overflow: hidden;
   }
   
@@ -31,7 +52,7 @@
     user-select: none;
     animation: fall linear infinite;
     opacity: 0.7;
-    will-change: transform; /* Mengoptimalkan performa browser */
+    will-change: transform;
   }
   
   @keyframes fall {
@@ -40,24 +61,9 @@
       opacity: 0.8;
     }
     100% {
-      /* Gunakan pixel/percentage berbasis container agar tidak merusak viewport */
       transform: translateY(105vh) rotate(360deg);
       opacity: 0.2;
     }
-  }
-  
-  /* --- HERO SECTION LAYAR PENUH --- */
-  .hero-section {
-    position: relative;
-    z-index: 2;
-    min-height: 100vh; /* Menggunakan min-height agar stabil */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
   }
   
   .section-subtitle {
@@ -289,7 +295,7 @@
     display: none;
   }
   
-  /* === RESPONSIVE UTK DISPLAY HP === */
+  /* === RESPONSIVE DISPLAY HP === */
   @media (max-width: 768px) {
     .main-title {
       font-size: 2.4rem;
