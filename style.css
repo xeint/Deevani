@@ -1,249 +1,302 @@
-/* --- Global Styles --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
   
-  :root {
-    --bg-color-soft: linear-gradient(135deg, #FFEEEE 0%, #FECFEF 99%, #FECFEF 100%);
-    --main-text-color: #4A4A4A; /* Abu-abu gelap untuk teks biasa */
-    --title-text-color: #8D2140; /* Merah marun elegan untuk judul */
-    --card-bg: #FFFFFF;
-    --pill-bg: #F8BBD0; /* Pink soft untuk pill-box */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Lato', sans-serif;
-  }
-  
   body {
-    color: var(--main-text-color);
-    font-family: var(--font-body);
-    line-height: 1.6;
+    background-color: #FDF0F2; /* Latar pink pastel sangat lembut */
+    font-family: 'Lato', 'Montserrat', sans-serif;
+    color: #555555;
+    min-height: 100vh;
+    position: relative;
     overflow-x: hidden;
-    position: relative;
-    scroll-behavior: smooth; /* Guliran halus saat scrolling */
   }
   
-  /* Memastikan background romantis ada di seluruh halaman */
-  body::before {
-    content: '';
+  /* === CONTAINER ELEMEN MELAYANG / BERJATUHAN === */
+  #floating-elements-container {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--bg-color-soft);
-    z-index: -1; /* Di bawah konten utama */
-  }
-  
-  .content-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-  }
-  
-  /* --- Teks Bergaya --- */
-  .section-subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #CC7F94; /* Pink keabu-abuan */
-    margin-bottom: 20px;
-  }
-  
-  .main-title, .section-title {
-    font-family: var(--font-heading);
-    color: var(--title-text-color);
-    line-height: 1.2;
-  }
-  
-  .main-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 25px;
-  }
-  
-  .section-title {
-    font-size: 2.2rem;
-    margin-bottom: 30px;
-  }
-  
-  .section-tagline {
-    font-size: 1.1rem;
-    font-weight: 300;
-    font-style: italic;
-    color: #B26A7F;
-    margin-bottom: 40px;
-  }
-  
-  .section-text {
-    font-size: 1.1rem;
-    color: #5A5A5A;
-    margin-bottom: 50px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* --- Bagian 1: Hero Section --- */
-  .hero-section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .scroll-down {
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-    color: #CC7F94;
-    position: absolute;
-    bottom: 40px;
-    width: 100%;
+    top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Supaya tidak mengganggu klik/scroll */
+    z-index: 1;
+    overflow: hidden;
   }
   
-  /* --- Bagian 2: Story Section (Tata Letak Kartu) --- */
-  .story-section {
-    padding: 100px 0;
+  .floating-item {
+    position: absolute;
+    top: -50px;
+    user-select: none;
+    animation: fall linear infinite;
+    opacity: 0.7;
   }
   
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 50px;
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(105vh) rotate(360deg);
+      opacity: 0.2;
+    }
   }
   
-  .message-card {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+  /* === LAYAR PEMBUKA (HERO SECTION) === */
+  .hero-section {
+    position: relative;
+    z-index: 2;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    transition: transform 0.2s;
+    padding: 60px 20px;
   }
   
-  .message-card:hover {
-    transform: translateY(-5px); /* Efek melayang saat hover */
-  }
-  
-  .card-icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
-  }
-  
-  .message-card h3 {
-    font-family: var(--font-heading);
+  .section-subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: #B56576;
     font-weight: 700;
-    color: var(--title-text-color);
-    font-size: 1.3rem;
     margin-bottom: 12px;
   }
   
-  .message-card p {
-    font-size: 0.95rem;
-    color: #666;
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: #8C223A;
+    line-height: 1.2;
+    margin-bottom: 15px;
   }
   
-  /* --- Bagian 3: Footer Section --- */
-  .footer-section {
-    padding-top: 100px;
+  .section-tagline {
+    font-size: 1rem;
+    color: #777777;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
   }
   
-  .footer-quote {
-    background-color: var(--title-text-color); /* Latar belakang marun */
-    color: #FFFFFF;
-    padding: 60px 20px;
+  .scroll-down {
+    font-size: 0.8rem;
+    color: #B56576;
+    letter-spacing: 2px;
+    font-weight: 700;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+  }
+  
+  /* === SECTION STORY & KARTU === */
+  .story-section {
+    position: relative;
+    z-index: 2;
+    padding: 40px 20px 60px;
     text-align: center;
   }
   
-  .footer-quote p {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
+  .content-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #8C223A;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  
+  .section-text {
+    max-width: 680px;
+    margin: 0 auto 50px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #666666;
     font-style: italic;
-    margin-bottom: 25px;
+  }
+  
+  /* Grid Kartu Pesan */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  
+  .message-card {
+    background: #FFFFFF;
+    border: 1px solid #FAD2E1;
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(230, 180, 190, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .message-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(230, 180, 190, 0.3);
+  }
+  
+  .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #8C223A;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  
+  .card-desc, .message-card p {
+    font-size: 0.92rem;
+    color: #777777;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  
+  /* === FOOTER SECTION === */
+  .footer-section {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 60px 20px 20px;
+  }
+  
+  .footer-quote {
+    max-width: 600px;
+    margin: 0 auto 60px;
+    padding: 30px;
+    border-top: 1px solid #FAD2E1;
+    border-bottom: 1px solid #FAD2E1;
+  }
+  
+  .footer-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #8C223A;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 15px;
   }
   
   .quote-author {
     font-size: 0.75rem;
     letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.8;
-  }
-  
-  .footer-bottom {
-    padding: 80px 0;
+    color: #B56576;
+    font-weight: 700;
   }
   
   .love-pill {
     display: inline-block;
-    background-color: var(--pill-bg);
-    color: #9D3C5C;
-    padding: 12px 25px;
+    background-color: #FAD2E1;
+    color: #8C223A;
+    padding: 8px 20px;
     border-radius: 50px;
-    font-weight: bold;
+    font-size: 0.85rem;
+    font-weight: 700;
     letter-spacing: 1px;
-    margin-bottom: 40px;
-  }
-  
-  .section-title span {
-    font-style: italic; /* Huruf & bergaya miring */
+    margin: 15px 0 20px;
   }
   
   .made-with {
     font-size: 0.9rem;
-    color: #666;
-    max-width: 600px;
-    margin: 0 auto;
+    color: #777777;
   }
   
   .made-with span {
-    color: var(--title-text-color);
-    font-weight: bold;
+    color: #8C223A;
+    font-weight: 700;
   }
   
-  /* --- Bagian 4: KODE GAME KUIS (Diambil dari kode sebelumnya) --- */
+  /* === GAME QUIZ STYLES === */
   .quiz-section {
-    padding: 80px 20px;
-    background: rgba(255, 255, 255, 0.3); /* Transparansi sedikit agar background body terlihat */
+    position: relative;
+    z-index: 2;
+    padding: 40px 20px 80px;
     display: flex;
     justify-content: center;
-    align-items: center;
   }
   
   .card {
     background: white;
-    padding: 30px;
+    padding: 35px 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid #FAD2E1;
+    box-shadow: 0 10px 25px rgba(230, 180, 190, 0.2);
     text-align: center;
     max-width: 450px;
     width: 100%;
+  }
+  
+  .card h1 {
+    font-family: 'Playfair Display', serif;
+    color: #8C223A;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 20px;
   }
   
   .options-grid {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 20px;
   }
   
   button {
-    background-color: #FF4D6D;
+    background-color: #8C223A;
     color: white;
     border: none;
     padding: 12px 20px;
     border-radius: 12px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s;
   }
   
   button:hover {
-    background-color: #C9184A;
-    transform: scale(1.03);
+    background-color: #A32A46;
+    transform: scale(1.02);
   }
   
   .hidden {
     display: none;
-  } 
+  }
+  
+  /* === RESPONSIVE UTK DISPLAY HP === */
+  @media (max-width: 768px) {
+    .main-title {
+      font-size: 2.4rem;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+    }
+  
+    .card-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }

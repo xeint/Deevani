@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Special for Deevani ❤️</title>
   
-  <!-- Import Font dari Google Fonts (Playfair Display untuk Judul, Lato untuk Teks) -->
+  <!-- Import Font dari Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -14,7 +14,10 @@
 </head>
 <body>
 
-  <!-- Bagian 1: Layar Pembuka (Seperti image_12.png) -->
+  <!-- Container untuk animasi Bunga & Love berjatuhan -->
+  <div id="floating-elements-container"></div>
+
+  <!-- Bagian 1: Layar Pembuka -->
   <section class="hero-section">
     <div class="content-wrapper">
       <p class="section-subtitle">A LITTLE SOMETHING FOR</p>
@@ -24,55 +27,61 @@
     </div>
   </section>
 
-  <!-- Bagian 2: Kartu Pesan "The Truth" (Seperti image_13.png & image_14.png) -->
+  <!-- Bagian 2: Kartu Pesan "The Truth" -->
   <section class="story-section">
     <div class="content-wrapper">
       <p class="section-subtitle">THE TRUTH</p>
       <h2 class="section-title">You are, without question, the<br>most beautiful person I know.</h2>
       <p class="section-text">
         "You know what? The thing that surprises me the most isn't anything complicated it's the fact that you still don't realize you're the most beautiful and cutest person I've ever known. The world might be huge, but to me, your charm is unmatched. You are the absolute definition of perfect to me."
-      </        <!-- Kartu Baris Pertama -->
+      </p>
+
+      <!-- Pembungkus Card Grid -->
+      <div class="card-grid">
+        
+        <!-- Kartu Baris Pertama -->
         <div class="message-card">
           <p class="card-icon">🌹</p>
-          <h3>The way you smile</h3>
-          <p>It does something to me every time. I don't think you realize how much warmth lives in that smile.</p>
+          <h3 class="card-title">The way you smile</h3>
+          <p class="card-desc">It does something to me every time. I don't think you realize how much warmth lives in that smile.</p>
         </div>
         
         <div class="message-card">
           <p class="card-icon">✨</p>
-          <h3>How you carry yourself</h3>
-          <p>There's a softness in you that makes everyone around you feel safe. That's rare.</p>
+          <h3 class="card-title">How you carry yourself</h3>
+          <p class="card-desc">There's a softness in you that makes everyone around you feel safe. That's rare.</p>
         </div>
         
         <div class="message-card">
           <p class="card-icon">🌙</p>
-          <h3>Even on quiet days</h3>
-          <p>No makeup, no occasion — just you, simply existing — and you're still the prettiest thing in the room.</p>
+          <h3 class="card-title">Even on quiet days</h3>
+          <p class="card-desc">No makeup, no occasion — just you, simply existing — and you're still the prettiest thing in the room.</p>
         </div>
         
         <!-- Kartu Baris Kedua -->
         <div class="message-card">
           <p class="card-icon">💌</p>
-          <h3>The little things</h3>
-          <p>The way you talk, the way you think, the way you laugh at your own jokes. I love it all.</p>
+          <h3 class="card-title">The little things</h3>
+          <p class="card-desc">The way you talk, the way you think, the way you laugh at your own jokes. I love it all.</p>
         </div>
         
         <div class="message-card">
           <p class="card-icon">🏠</p>
-          <h3>You feel like home</h3>
-          <p>Not a place — a feeling. The kind of warmth that makes everything else quieter and okay.</p>
+          <h3 class="card-title">You feel like home</h3>
+          <p class="card-desc">Not a place — a feeling. The kind of warmth that makes everything else quieter and okay.</p>
         </div>
         
         <div class="message-card">
           <p class="card-icon">🌺</p>
-          <h3>You, exactly as you are</h3>
-          <p>Not a version of you. Not a better you. Just you — that's already more than enough.</p>
+          <h3 class="card-title">You, exactly as you are</h3>
+          <p class="card-desc">Not a version of you. Not a better you. Just you — that's already more than enough.</p>
         </div>
-      </div>
+
+      </div> <!-- Akhir card-grid -->
     </div>
   </section>
 
-  <!-- Bagian 3: Pesan Penutup & Footer (Seperti image_15.png) -->
+  <!-- Bagian 3: Pesan Penutup & Footer -->
   <section class="footer-section">
     <div class="footer-quote">
       <p>"You are my favorite place to come back to —<br>
@@ -91,7 +100,7 @@
     </div>
   </section>
 
-  <!-- Bagian 4: KODE GAME KUIS KAMU (Akan muncul di bagian paling bawah) -->
+  <!-- Bagian 4: KODE GAME KUIS KAMU -->
   <section id="quiz-game" class="quiz-section">
     <div class="card">
       <!-- Layar Awal -->
@@ -109,7 +118,7 @@
 
       <!-- Layar Pemenang -->
       <div id="reward-screen" class="hidden">
-        <h1>Congrats, You Win!! 🎉</h1>
+        <h1>Congrats!, You Win!! 🎉</h1>
         <p id="final-message">Thank you for always being by my side and making every day a little more beautiful. 🥹❤️. I love you so much! ❤️</p>
         <button onclick="restartGame()" class="btn-primary">Main Lagi</button>
       </div>
