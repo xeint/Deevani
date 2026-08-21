@@ -13,24 +13,25 @@
     overflow-x: hidden;
   }
   
-  /* === CONTAINER ELEMEN MELAYANG / BERJATUHAN === */
-  #floating-elements-container {
+  /* --- CONTAINER EMOJI MELAYANG (FIX ZOOM ISSUE) --- */
+#floating-elements-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Supaya tidak mengganggu klik/scroll */
-    z-index: 1;
-    overflow: hidden;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden; /* Mencegah halaman melar / auto-zoom */
   }
   
-  .floating-item {  
+  .floating-item {
     position: absolute;
     top: -50px;
     user-select: none;
     animation: fall linear infinite;
     opacity: 0.7;
+    will-change: transform; /* Mengoptimalkan performa browser */
   }
   
   @keyframes fall {
@@ -39,21 +40,24 @@
       opacity: 0.8;
     }
     100% {
+      /* Gunakan pixel/percentage berbasis container agar tidak merusak viewport */
       transform: translateY(105vh) rotate(360deg);
       opacity: 0.2;
     }
   }
   
-/* === LAYAR PEMBUKA (HERO SECTION) === */
-.hero-section {
+  /* --- HERO SECTION LAYAR PENUH --- */
+  .hero-section {
     position: relative;
     z-index: 2;
-    height: 100vh; 
+    min-height: 100vh; /* Menggunakan min-height agar stabil */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 20px;
+    box-sizing: border-box;
   }
   
   .section-subtitle {

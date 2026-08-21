@@ -1,37 +1,46 @@
-// === ANIMASI BUNGA & LOVE BERJATUHAN ===
-const floatingContainer = document.getElementById("floating-elements-container");
-const items = ["🌸", "🌺", "🌷", "💖", "💕", "✨", "💗"];
-
-function createFloatingItem() {
-  if (!floatingContainer) return;
-
-  const item = document.createElement("span");
-  item.classList.add("floating-item");
+// === ANIMASI BUNGA & LOVE BERJATUHAN (FIX POSITIONING) ===
+function initFloatingElements() {
+    const floatingContainer = document.getElementById("floating-elements-container");
+    if (!floatingContainer) return;
   
-  // Pilih emoji secara acak
-  item.innerText = items[Math.floor(Math.random() * items.length)];
+    const items = ["🌸", "🌺", "🌷", "💖", "💕", "✨", "💗"];
   
-  // Posisi horizontal acak (0% - 100%)
-  item.style.left = Math.random() * 100 + "vw";
+    function createFloatingItem() {
+      const item = document.createElement("span");
+      item.classList.add("floating-item");
+      
+      // Pilih emoji acak
+      item.innerText = items[Math.floor(Math.random() * items.length)];
+      
+      // Gunakan persen (%) bukan vw agar tidak memicu horizontal scroll / zoom out
+      const randomLeft = Math.floor(Math.random() * 90) + 5; // Rentang 5% - 95%
+      item.style.left = randomLeft + "%";
+      
+      // Ukuran bervariasi
+      const size = Math.random() * 12 + 16;
+      item.style.fontSize = size + "px";
+      
+      // Durasi jatuh
+      const duration = Math.random() * 4 + 5;
+      item.style.animationDuration = duration + "s";
+      
+      floatingContainer.appendChild(item);
   
-  // Ukuran bervariasi (14px - 28px)
-  const size = Math.random() * 14 + 14;
-  item.style.fontSize = size + "px";
+      // Hapus elemen setelah selesai jatuh
+      setTimeout(() => {
+        item.remove();
+      }, duration * 1000);
+    }
   
-  // Durasi jatuh bervariasi (5 - 10 detik)
-  const duration = Math.random() * 5 + 5;
-  item.style.animationDuration = duration + "s";
+    // Jalankan pembuatan emoji setiap 350ms
+    setInterval(createFloatingItem, 350);
+  }
   
-  floatingContainer.appendChild(item);
-
-  // Hapus elemen setelah animasi selesai agar tidak memberatkan browser
-  setTimeout(() => {
-    item.remove();
-  }, duration * 1000);
-}
-
-// Buat elemen melayang baru setiap 400 milidetik
-setInterval(createFloatingItem, 400);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFloatingElements);
+  } else {
+    initFloatingElements();
+  }
 
 
 // === LOGIKA GAME KUIS KAMU ===
